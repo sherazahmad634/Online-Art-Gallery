@@ -1,10 +1,14 @@
 "use client";
-import { Fragment } from "react";
-import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+
+import { Disclosure } from "@headlessui/react";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
-import SignIn from "@/app/signIn/page"
-import next from "next";
+import {handleLogout, logout} from "../redux/stateManager/article/signOutSlice"
+// import { logout } from "../redux/stateManager/article/signOutSlice";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+
+
 const navigation = [
   { name: "Home ", href: "/", current: true },
   { name: "Collection", href: "/discovery", current: false },
@@ -15,6 +19,12 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 export default function Header() {
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const dispatch=useDispatch();
+  const handleLogout = () => {
+    // Dispatch the login action
+    dispatch(logout());
+  };
   return (
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
@@ -71,7 +81,42 @@ export default function Header() {
                   <span className="sr-only">View notifications</span>
                   <BellIcon className="h-6 w-6" aria-hidden="true" />
                 </button> */}
-                <div className="mr-2">
+
+                {isAuthenticated ? (
+                  <button
+                    // href='/SignIn'
+                    //  type="submit"
+                    onClick={handleLogout}
+                    className="flex w-full justify-center rounded-md bg-orange-300 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-orange-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  >
+                    logout
+                  </button>
+                ) : (
+                  <>
+                    <div className="mr-2">
+                      <Link href={"/signIn"}>
+                        <button
+                          // href='/SignIn'
+                          type="submit"
+                          className="flex w-full justify-center rounded-md bg-orange-300 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-orange-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        >
+                          Sign In
+                        </button>
+                      </Link>
+                    </div>
+                    <div>
+                      <Link href={"/signUp"}>
+                        <button
+                          type="submit"
+                          className="flex w-full justify-center rounded-md bg-orange-300 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-orange-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        >
+                          Sign Up
+                        </button>
+                      </Link>
+                    </div>
+                  </>
+                )}
+                {/* <div className="mr-2">
                   <Link href={"/signIn"}>
                     <button
                       // href='/SignIn'
@@ -91,7 +136,7 @@ export default function Header() {
                       Sign Up
                     </button>
                   </Link>
-                </div>
+                </div> */}
 
                 {/* Profile dropdown */}
                 {/* <Menu as="div" className="relative ml-3">

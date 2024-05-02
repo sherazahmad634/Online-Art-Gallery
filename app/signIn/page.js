@@ -2,20 +2,42 @@
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { loginUser } from "../redux/stateManager/article/signInSlice";
+import { useRouter } from "next/navigation";
+import axios from "axios";
+import {handleLogin} from "../redux/stateManager/article/signOutSlice"
+import { login } from "../redux/stateManager/article/signOutSlice";
 
 export default function SignIn() {
+  const router = useRouter();
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const handleLogin = () => {
+    // Dispatch the login action
+    dispatch(login());
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = {
       email,
       password,
     };
-    dispatch(loginUser(data))
-    router.push("/")
+
+    axios
+      .post("http://localhost:5555/user/login", data)
+      .then((response) => {
+        setIsLoggedIn(true); // Update authentication status
+        router.push(`/?id=${response.data.user._id}`);
+        // router.push(`/?id=${response.data.user._id}`);
+        const userId = response.data.user._id;
+        const token = response.data.token;
+      })
+      .catch((error) => {
+        // alert("Login error");
+      });
+
+    router.push("/");
   };
   return (
     <>
@@ -89,15 +111,21 @@ export default function SignIn() {
                 </div>
               </div>
 
-              
+              {/* {isLoggedIn ? ( // Conditional rendering based on authentication status
                 <button
-                  onClick={handleSubmit}
-                  type="submit"
                   className="flex w-full justify-center rounded-md bg-orange-300 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-orange-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
+                  onClick={() => router.push("/user-profile")} // Navigate to user profile on click
                 >
-                  Sign in
+                  User Profile
                 </button>
-              
+              ) : ( */}
+              <button
+                onClick={handleLogin}
+                type="submit"
+                className="flex w-full justify-center rounded-md bg-orange-300 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-orange-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
+              >
+                Sign in
+              </button>
             </form>
 
             <p className="mt-10 text-center text-sm text-gray-500">

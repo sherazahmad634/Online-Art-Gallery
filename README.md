@@ -1,7 +1,14 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## ONLINE ART GALLERY---------------
 
+## DESCRIPTION----------------------
+-This is an Online Art Gallery where users can view and interact with art collections,
+    manage their favorite artworks, and explore art details.
+-We are implementing State management with Redux where. through this we can search any art piece and can view it's related information, like author, title , price etc.
+
+## NSTALLATION GUIDE-----------------
+-On downloading the project, You first need to run Command like npm install to install the required Dependancies in your project. 
+-In this project we are using version of "next": "14.2.3" and "Node":"v18.17.1".
 ## Getting Started
-
 First, run the development server:
 
 ```bash
@@ -13,24 +20,25 @@ pnpm dev
 # or
 bun dev
 ```
-
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Contributing
 
-## Learn More
+We welcome contributions from the community! If you'd like to contribute to the project, please follow these guidelines:
 
-To learn more about Next.js, take a look at the following resources:
+1. Fork the repository
+2. Create a new branch: `git checkout -b feature`
+3. Make your changes and commit them: `git commit -m 'Add new feature'`
+4. Push to the branch: `git push origin feature`
+5. Submit a pull request
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## License
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+This project is dedicated to the public domain. You are free to use, modify, and distribute it without any restrictions. There is no need for attribution or licensing fees.
 
-## Deploy on Vercel
+## Contact
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+If you have any questions or suggestions, feel free to reach out to us:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Email: sherazahmmad634@gmail.com
