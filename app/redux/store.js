@@ -1,7 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import booksReducer from "./stateManager/article/articleSlice"
+import useReducer  from "./stateManager/article/signInSlice";
+import booksReducer from "./stateManager/article/articleSlice";
 export default configureStore({
     reducer: {
       books: booksReducer,
+      user:useReducer
     },
   });
